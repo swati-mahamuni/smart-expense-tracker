@@ -36,30 +36,38 @@ def show_category_chart():
     plt.savefig("category_spending.png")
     plt.show()
 
+import pandas as pd
+import matplotlib.pyplot as plt
 
 def show_monthly_chart():
-    if not file_exists():
-        print("no data file found")
-        return
+    try:
+        df = pd.read_csv("expenses.csv")
 
-    data = {}
+        if df.empty:
+            print("No data to plot")
+            return
 
-    with open(FILE, "r") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            month = row["date"][:7]
-            amt = float(row["amount"])
-            data[month] = data.get(month, 0) + amt
+        # convert to datetime
+        df["date"] = pd.to_datetime(df["date"])
 
-    if not data:
-        print("No data to plot")
-        return
+        # group by month
+        monthly = df.groupby(df["date"].dt.to_period("M"))["amount"].sum()
 
-    plt.plot(list(data.keys()), list(data.values()), marker="o")
-    plt.title("Monthly Spending Trend")
-    plt.xlabel("Month")
-    plt.ylabel("Total Spending")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    plt.savefig("monthly_spending.png")
-    plt.show()
+        # convert index to string for plotting
+        monthly.index = monthly.index.astype(str)
+
+        # sort values (VERY IMPORTANT)
+        monthly = monthly.sort_index()
+
+        # plot
+        plt.plot(monthly.index, monthly.values, marker="o")
+        plt.title("Monthly Spending Trend")
+        plt.xlabel("Month")
+        plt.ylabel("Total Spending")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.savefig("monthly_spending.png")
+        plt.show()
+
+    except Exception as e:
+        print("Error:", e)

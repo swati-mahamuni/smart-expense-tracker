@@ -1,11 +1,7 @@
-date,category,amount,description
-2026-02-01,Food,200,Lunch
-2026-02-02,Travel,100,Bus fare
-2026-02-03,Shopping,500,Clothes
-2026-02-15,Food,250.0,Dinner
-2025-06-06,Travel,500.0,lunch
-2026-02-10,Food,250.0,dinner
-2026-08-23,Shopping,600.0,lunch
-2025-06-20,Bills,500.0,light bill
-2025-02-01,Entertainment,200.0,Movie
-2020-12-13,Travel,600.0,pune
+date,category,amount
+2025-01-01,Food,200
+2025-01-10,Travel,100
+2025-02-05,Shopping,300
+2025-02-20,Food,150
+2025-03-15,Bills,400
+2025-03-25,Travel,200

@@ -51,7 +51,7 @@ def menu():
             show_monthly_chart()
 
         elif choice == "8":
-            print("Goodbye!")
+            print("Goodbye")
             break
 
         elif choice == "9":

@@ -11,7 +11,7 @@ def file_exists():
 
 def show_category_chart():
     if not file_exists():
-        print("No data file found")
+        print("no data file found")
         return
 
     data = {}
@@ -49,23 +49,23 @@ def show_monthly_chart():
             print("No data to plot")
             return
 
-        # ✅ Clean and fix data
+        # Clean and fix data
         df["date"] = pd.to_datetime(df["date"], errors='coerce')
         df["amount"] = pd.to_numeric(df["amount"], errors='coerce')
 
         # remove invalid rows
         df = df.dropna(subset=["date", "amount"])
 
-        # ✅ Group by month
+        # Group by month
         monthly = df.groupby(df["date"].dt.to_period("M"))["amount"].sum()
 
-        # ✅ Convert index to proper datetime (IMPORTANT FIX)
+        #Convert index to proper datetime (IMPORTANT FIX)
         monthly.index = monthly.index.to_timestamp()
 
-        # ✅ Sort correctly
+        # Sort correctly
         monthly = monthly.sort_index()
 
-        # ✅ Plot
+        # Plot
         plt.figure()
         plt.plot(monthly.index, monthly.values, marker="o")
         plt.title("Monthly Spending Trend")

@@ -65,5 +65,8 @@ Follow the menu options shown in the terminal.
 I wanted hands-on practice with Python by building something practical and useful.
 This project helped me understand:
 
-Working with files in Python
-Or
+Working with files in Python  
+Reading and writing CSV data  
+Basic data analysis and aggregation  
+Generating visualizations using matplotlib  
+Structuring a project into multiple Python files
